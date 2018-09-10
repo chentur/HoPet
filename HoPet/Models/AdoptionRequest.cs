@@ -9,9 +9,8 @@ namespace HoPet.Models
     {
         public int Id { get; set; }
         public bool IsOpen { get; set; }
-        public string Name { get; set; }
-        public string Email { get; set; }
-        public string ContactInfo { get; set; }
+        public User User { get; set; }
         public Pet Pet { get; set; }
     }
+
 }

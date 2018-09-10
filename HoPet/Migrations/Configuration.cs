@@ -7,7 +7,7 @@ namespace HoPet.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<HoPet.Models.HoPetDBContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<HoPet.Models.ProjectDBContext>
     {
         public Configuration()
         {
@@ -15,7 +15,7 @@ namespace HoPet.Migrations
             AutomaticMigrationDataLossAllowed = true;
         }
 
-        protected override void Seed(HoPet.Models.HoPetDBContext context)
+        protected override void Seed(HoPet.Models.ProjectDBContext context)
         {
             // Cleanup
 
@@ -40,7 +40,7 @@ namespace HoPet.Migrations
             // Data insertion
 
             // Products
-            context.Products.Add(new Product() { Id = 1, Name = "Ball", Description = "Red ball", PetRelated = AnimalType.DOG, Price = 15, Quantity = 100 });
+            context.Products.Add(new Product() { Id = 1, Name = "Ball", Description = "Red ball", PetRelated = AnimalType.DOG, Price = 15.99, Quantity = 100 });
             context.Products.Add(new Product() { Id = 2, Name = "Food", Description = "Dry food", PetRelated = AnimalType.CAT, Price = 60, Quantity = 50 });
             context.Products.Add(new Product() { Id = 3, Name = "Aquarium", Description = "Fish tank", PetRelated = AnimalType.FISH, Price = 84, Quantity = 23 });
             context.Products.Add(new Product() { Id = 4, Name = "Bed", Description = "Big bed", PetRelated = AnimalType.DOG, Price = 250, Quantity = 10 });
@@ -53,8 +53,8 @@ namespace HoPet.Migrations
             context.Pets.Add(new Pet() { Id = 5, AdoptionDate = new System.DateTime(2017, 02, 17), AnimalType = AnimalType.DOG, Name = "Kamila", Description = "white dog", IsAdopted = true, Birthdate = new System.DateTime(2017, 07, 17) });
 
             // Adoption Requests
-            context.adoptionRequests.Add(new AdoptionRequest() { Id = 1, IsOpen = true, Name = "Yossi Liron", ContactInfo = "0544444444", Email = "bla@gmail.com", Pet = context.Pets.Find(1) });
-            context.adoptionRequests.Add(new AdoptionRequest() { Id = 2, IsOpen = true, Name = "Chen Turgeman", ContactInfo = "0533333333", Email = "chentur@gmail.com", Pet = context.Pets.Find(5) });
+            context.adoptionRequests.Add(new AdoptionRequest() { Id = 1, IsOpen = true, User = context.Users.Find(1), Pet = context.Pets.Find(1) });
+            context.adoptionRequests.Add(new AdoptionRequest() { Id = 2, IsOpen = true, User = context.Users.Find(2), Pet = context.Pets.Find(5) });
 
             // Organizations
             context.Organizations.Add(new Organization()
@@ -79,9 +79,9 @@ namespace HoPet.Migrations
             });
 
             // Users
-            context.Users.Add(new User() { Id = 1, Username = "yardenl", IsAdmin = false, Password = "123456", Email = "yardenl@gmail.com", Organization = context.Organizations.Find(1) });
-            context.Users.Add(new User() { Id = 2, Username = "chentur", IsAdmin = true, Password = "123456", Email = "chentur@gmail.com", Organization = context.Organizations.Find(2) });
-            context.Users.Add(new User() { Id = 3, Username = "OscarGoodBoy", IsAdmin = false, Password = "123456", Email = "goodboy@gmail.com", Organization = context.Organizations.Find(3) });
+            context.Users.Add(new User() { Id = 1, Username = "yardenl", IsAdmin = false, Password = "123456", Email = "yardenl@gmail.com", ContactInfo = "099555281" });
+            context.Users.Add(new User() { Id = 2, Username = "chentur", IsAdmin = true, Password = "123456", Email = "chentur@gmail.com", ContactInfo = "0544688199" });
+            context.Users.Add(new User() { Id = 3, Username = "OscarGoodBoy", IsAdmin = false, Password = "123456", Email = "goodboy@gmail.com", ContactInfo = "0544788193" });
 
 
             context.SaveChanges();

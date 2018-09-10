@@ -7,11 +7,11 @@ using System.Data.Entity.Migrations;
 
 namespace HoPet.Models
 {
-    public class HoPetDBContext : DbContext
+    public class ProjectDBContext : DbContext
     {
-        public HoPetDBContext() : base("HoPetDBContext")
+        public ProjectDBContext() : base("ProjectDBContext")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<HoPetDBContext, DbMigrationsConfiguration<HoPetDBContext>>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ProjectDBContext, DbMigrationsConfiguration<ProjectDBContext>>());
         }
 
         public DbSet<User> Users { get; set; }
