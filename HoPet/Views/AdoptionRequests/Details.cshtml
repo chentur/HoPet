@@ -1,0 +1,120 @@
+﻿@model HoPet.Models.AdoptionRequest
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-sm">
+            <h2>@Html.DisplayFor(model => model.Pet.Name)'s Adoption Request</h2>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Aprove", "Aprove", new { }, new { @class = "btn btn-success" })
+            </p>
+        </div>
+    </div>
+</div>
+<div>
+    <dl class="dl-horizontal">
+        <dl class="dl-horizontal">
+            <span>@Html.DisplayNameFor(model => model.IsOpen): </span>
+            @{
+                if (Model.IsOpen)
+                {
+                    <span class="text-success">Open</span>
+                }
+                else
+                {
+                    <span class="text-danger">Close</span>
+                }
+            }
+        </dl>
+        <ul class="list-inline">
+            <li class="list-inline-item">
+                <div class="card details-full-card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header card-field">
+                        <h4>
+                            Pet's Details
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.Pet.Name) : </span>
+                            <span>@Html.DisplayFor(modelItem => Model.Pet.Name)</span>
+                        </p>
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.Pet.AnimalType) : </span>
+                            <span>@Html.DisplayFor(modelItem => Model.Pet.AnimalType)</span>
+                        </p>
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.Pet.Description) : </span>
+                            <span>@Html.DisplayFor(modelItem => Model.Pet.Description)</span>
+                        </p>
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.Pet.Birthdate) : </span>
+                            <span>@DateTime.Parse(Model.Pet.Birthdate.ToString()).ToShortDateString())</span>
+                        </p>
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.Pet.IsAdopted) : </span>
+                            @{
+                                if (Model.Pet.IsAdopted)
+                                {
+                                    <span class="text-success">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="text-danger">No</span>
+                                }
+                            }
+                        </p>
+            </li>
+            <li class="list-inline-item">
+                <div class="card details-full-card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header card-field">
+                        <h4>
+                            User's Details
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.User.Username) : </span>
+                            <span>@Html.DisplayFor(modelItem => Model.User.Username)</span>
+                        </p>
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.User.Email) : </span>
+                            <span>@Html.DisplayFor(modelItem => Model.User.Email)</span>
+                        </p>
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.User.ContactInfo) : </span>
+                            <span>@Html.DisplayFor(modelItem => Model.User.ContactInfo)</span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+            <li class="list-inline-item">
+                <div class="card details-full-card border-primary mb-3" style="max-width: 20rem;">
+                    <div class="card-header card-field">
+                        <h4>
+                            Organization's Details
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.Pet.Organization.Name) : </span>
+                            <span>@Html.DisplayFor(modelItem => Model.Pet.Organization.Name)</span>
+                        </p>
+                        <p class="card-text">
+                            <span class="card-field">@Html.DisplayNameFor(model => model.Pet.Organization.PhoneNumber) : </span>
+                            <span>@Html.DisplayFor(modelItem => Model.Pet.Organization.PhoneNumber)</span>
+                        </p>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

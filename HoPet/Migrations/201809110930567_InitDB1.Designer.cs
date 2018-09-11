@@ -13,7 +13,7 @@ namespace HoPet.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201809101235478_InitDB1"; }
+            get { return "201809110930567_InitDB1"; }
         }
         
         string IMigrationMetadata.Source

@@ -1,0 +1,67 @@
+﻿@model IEnumerable<HoPet.Models.AdoptionRequest>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-sm">
+            <h2>Adoption Requests List</h2>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success" })
+            </p>
+        </div>
+    </div>
+</div>
+<span class="fa fa-plus"></span>
+<ul class="list-inline">
+    @foreach (var item in Model)
+    {
+        <li class="list-inline-item full-card">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header card-field">
+                    <h4>
+                        @Html.DisplayFor(modelItem => item.Pet.Name)
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Pet.Description) : </span>
+                        <span>@Html.DisplayFor(modelItem => item.Pet.Description)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.User.Email) : </span>
+                        <span>@Html.DisplayFor(modelItem => item.User.Email)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.User.ContactInfo) : </span>
+                        <span>@Html.DisplayFor(modelItem => item.User.ContactInfo)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.IsOpen) : </span>
+                        @{
+                            if (item.IsOpen)
+                            {
+                                <span class="text-success">Open</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">Close</span>
+                            }
+                        }
+                    </p>
+                </div>
+                <div class="card-footer container">
+                    <div class="row justify-content-around">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary col-3" })
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary col-4" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary col-4" })
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

@@ -1,0 +1,21 @@
+﻿.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+}
+
+.card-field {
+    font-weight: bold;
+}
+
+.full-card{
+    min-width: 250px;
+    max-width: 250px;
+}
+
+.details-full-card {
+    min-width: 250px;
+    max-width: 250px;
+    min-height: 270px;
+    max-height: 270px;
+}
