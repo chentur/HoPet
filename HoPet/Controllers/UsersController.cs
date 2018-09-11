@@ -32,6 +32,38 @@ namespace HoPet.Controllers
             return RedirectToAction("Index", "Error");
         }
 
+        // GET: Users/Search
+        public ActionResult Search(string username = null, bool isAdmin = false, string email = null)
+        {
+            var sessionUser = ((User)HttpContext.Session["user"]);
+            if (sessionUser != null)
+            {
+                if (sessionUser.IsAdmin)
+                {
+                    var returnDataQurey = db.Users.Select(curr => curr);
+
+                    if (!string.IsNullOrEmpty(username))
+                    {
+                        returnDataQurey = returnDataQurey.Where(curr => curr.Username.Contains(username));
+                    }
+
+                    returnDataQurey = returnDataQurey.Where(curr => curr.IsAdmin == isAdmin);
+
+                    if (!string.IsNullOrEmpty(email))
+                    {
+                        returnDataQurey = returnDataQurey.Where(u => u.Email.Contains(email));
+                    }
+
+                    return View(returnDataQurey.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Error", new { message = "Not autorized!" });
+                }
+            }
+            return RedirectToAction("Index", "Error");
+        }
+
         // GET: Users/Details/5
         public ActionResult Details(int? id)
         {
