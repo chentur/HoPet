@@ -7,3 +7,7 @@
 .card-field {
     font-weight: bold;
 }
+
+.error-message {
+    padding: 0 10px;
+}

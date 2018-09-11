@@ -1,41 +1,53 @@
 ﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">HoPet</a>
+    <div class="navbar-header">
+        @Html.ActionLink("HoPet", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     @{ var sessionVar = (HoPet.Models.User)HttpContext.Current.Session["user"];
-    <div class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <div class="nav-link">
-                    @Html.ActionLink("Pets", "Index", "Pets", new { }, new { @class = "nav-link" })
-                </div>
-            </li>
-            <li class="nav-item">
-                <div class="nav-link">
-                    @Html.ActionLink("Organizations", "Index", "Organizations", new { }, new { @class = "nav-link" })
-                </div>
-            </li>
-            <li class="nav-item">
-                <div class="nav-link">
-                    @Html.ActionLink("Adoption Requests", "Index", "AdoptionRequests", new { }, new { @class = "nav-link" })
-                </div>
-            </li>
-            <li class="nav-item">
-                <div class="nav-link">
-                    @Html.ActionLink("Products", "Index", "Products", new { }, new { @class = "nav-link" })
-                </div>
-            </li>
-            @{ if (sessionVar != null && sessionVar.IsAdmin)
-                {
-                    <li class="nav-item">
-                        <div class="nav-link">
-                            @Html.ActionLink("Users", "Index", "Users", new { }, new { @class = "nav-link" })
-                        </div>
-                    </li>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <div class="nav-link">
+                        @Html.ActionLink("Pets", "Index", "Pets", new { }, new { @class = "nav-link" })
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">
+                        @Html.ActionLink("Organizations", "Index", "Organizations", new { }, new { @class = "nav-link" })
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">
+                        @Html.ActionLink("Adoption Requests", "Index", "AdoptionRequests", new { }, new { @class = "nav-link" })
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">
+                        @Html.ActionLink("Products", "Index", "Products", new { }, new { @class = "nav-link" })
+                    </div>
+                </li>
+                @{ if (sessionVar != null && sessionVar.IsAdmin)
+                    {
+                        <li class="nav-item">
+                            <div class="nav-link">
+                                @Html.ActionLink("Users", "Index", "Users", new { }, new { @class = "nav-link" })
+                            </div>
+                        </li>
+                    }
                 }
-            }
-        </ul>
-    </div>
+                <li class="nav-item">
+                    <div class="nav-link">
+                        @Html.ActionLink("My Account", "Details", "Users", new { id = sessionVar.Id }, new { @class = "nav-link" })
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <div class="nav-link">
+                        @Html.ActionLink("Logout", "Logout", "Users", new { }, new { @class = "nav-link" })
+                    </div>
+                </li>
+            </ul>
+        </div>
     }
 </nav>
