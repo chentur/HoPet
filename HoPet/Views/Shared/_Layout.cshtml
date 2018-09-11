@@ -4,9 +4,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/Site.css")
+    @Styles.Render("~/Content/HoPetStyle.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -17,7 +16,8 @@
         }
         else
         {
-            @Html.Partial("_LoginNavbarPartialView")
+            //@Html.Partial("_LoginNavbarPartialView")
+            @Html.Partial("_NavbarPartialView")
         }
     }
     <div class="container body-content">

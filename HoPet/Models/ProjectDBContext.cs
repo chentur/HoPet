@@ -11,7 +11,7 @@ namespace HoPet.Models
     {
         public ProjectDBContext() : base("ProjectDBContext")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ProjectDBContext, DbMigrationsConfiguration<ProjectDBContext>>());
+            Database.SetInitializer<ProjectDBContext>(null);
         }
 
         public DbSet<User> Users { get; set; }
