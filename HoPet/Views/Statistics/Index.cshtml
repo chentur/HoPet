@@ -1,0 +1,40 @@
+﻿<meta charset="utf-8">
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+@Scripts.Render("~/Scripts/PetsStatistics.js")
+
+<style>
+    .bubbleChart {
+        min-width: 100px;
+        max-width: 450px;
+        min-height: 100px;
+        max-height: 450px;
+        margin: 0 auto;
+    }
+
+    .bar {
+        fill: steelblue;
+    }
+
+        .bar:hover {
+            fill: brown;
+        }
+
+    .axis--x path {
+        display: none;
+    }
+</style>
+</head>
+<body>
+    <div class="chart" />
+    <div class="pie" />
+</body>
+</html>
+
+<script>
+    var petsByType = JSON.parse('@Html.Raw(ViewBag.petsByType)');
+    drawBasicPieChart(petsByType);
+
+    var petsCountByOrganization = JSON.parse('@Html.Raw(ViewBag.petsCountByOrganization)');
+    drawBasicChart(petsCountByOrganization);
+</script>
