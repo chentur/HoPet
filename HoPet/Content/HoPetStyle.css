@@ -8,14 +8,14 @@
     font-weight: bold;
 }
 
-.full-card{
-    min-width: 250px;
-    max-width: 250px;
+.error-message {
+    padding: 0 10px;
 }
 
-.details-full-card {
-    min-width: 250px;
-    max-width: 250px;
-    min-height: 270px;
-    max-height: 270px;
+.search-form {
+    padding-bottom: 4px;
+}
+
+.margin-top-small {
+    margin-top: 4px;
 }

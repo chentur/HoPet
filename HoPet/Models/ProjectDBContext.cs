@@ -7,18 +7,17 @@ using System.Data.Entity.Migrations;
 
 namespace HoPet.Models
 {
-    public class ProjectDBContext : DbContext
+    public class ProjectDBContext : System.Data.Entity.DbContext
     {
         public ProjectDBContext() : base("ProjectDBContext")
         {
             Database.SetInitializer<ProjectDBContext>(null);
-            Configuration.LazyLoadingEnabled = false;
         }
 
         public DbSet<User> Users { get; set; }
         public DbSet<Pet> Pets { get; set; }
         public DbSet<Organization> Organizations { get; set; }
-        public DbSet<AdoptionRequest> adoptionRequests { get; set; }
+        public DbSet<AdoptionRequest> AdoptionRequests { get; set; }
         public DbSet<Product> Products { get; set; }
     }
 }
