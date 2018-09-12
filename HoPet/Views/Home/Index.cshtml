@@ -1,4 +1,6 @@
 ﻿@{
+    /**/
+
     ViewBag.Title = "Home Page";
 }
 
@@ -17,34 +19,40 @@
     </div>
 </div>
 
-<div class="row justify-content-around">
-    <div class="col-md-4 margin-top-small d-flex align-items-start">
-        <div class="jumbotron align-self-lg-stretch">
-            <h3>Adopt Pets</h3>
-            <p class="lead">
-                You can what all the pets that are looking for homes
-                and open an adoption request to adopt them!
-            </p>
-            <p class="btn btn-default">@Html.ActionLink("Go To Pets ", "Index", "Pets")&raquo;</p>
+@{
+    var sessionVar = (HoPet.Models.User)HttpContext.Current.Session["user"];
+    if (sessionVar != null)
+    {
+        <div class="row justify-content-around">
+            <div class="col-md-4 margin-top-small d-flex align-items-start">
+                <div class="jumbotron align-self-lg-stretch">
+                    <h3>Adopt Pets</h3>
+                    <p class="lead">
+                        You can what all the pets that are looking for homes
+                        and open an adoption request to adopt them!
+                    </p>
+                    <p class="btn btn-default">@Html.ActionLink("Go To Pets ", "Index", "Pets")&raquo;</p>
+                </div>
+            </div>
+            <div class="col-md-4 margin-top-small d-flex align-items-start">
+                <div class="jumbotron align-self-lg-stretch">
+                    <h3>Watch Our Organizations</h3>
+                    <p class="lead">
+                        Come see all our hard working organizations and their contact information.
+                    </p>
+                    <p class="btn btn-default">@Html.ActionLink("Go To Organizations ", "Index", "Organizations")&raquo;</p>
+                </div>
+            </div>
+            <div class="col-md-4 margin-top-small d-flex align-items-start">
+                <div class="jumbotron align-self-lg-stretch">
+                    <h3>Explore Our Products</h3>
+                    <p class="lead">
+                        Explore all kinds of products for all pet kinds.
+                        Contact us if anything is missing..
+                    </p>
+                    <p class="btn btn-default">@Html.ActionLink("Go To Products ", "Index", "Products")&raquo;</p>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="col-md-4 margin-top-small d-flex align-items-start">
-        <div class="jumbotron align-self-lg-stretch">
-            <h3>Watch Our Organizations</h3>
-            <p class="lead">
-                Come see all our hard working organizations and their contact information.
-            </p>
-            <p class="btn btn-default">@Html.ActionLink("Go To Organizations ", "Index", "Organizations")&raquo;</p>
-        </div>
-    </div>
-    <div class="col-md-4 margin-top-small d-flex align-items-start">
-        <div class="jumbotron align-self-lg-stretch">
-            <h3>Explore Our Products</h3>
-            <p class="lead">
-                Explore all kinds of products for all pet kinds.
-                Contact us if anything is missing..
-            </p>
-            <p class="btn btn-default">@Html.ActionLink("Go To Products ", "Index", "Products")&raquo;</p>
-        </div>
-    </div>
-</div>
+    }
+}
