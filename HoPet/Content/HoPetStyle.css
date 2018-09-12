@@ -1,0 +1,21 @@
+﻿.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+}
+
+.card-field {
+    font-weight: bold;
+}
+
+.error-message {
+    padding: 0 10px;
+}
+
+.search-form {
+    padding-bottom: 4px;
+}
+
+.margin-top-small {
+    margin-top: 4px;
+}

@@ -25,15 +25,15 @@ namespace HoPet.Migrations
             // Pet
             var pets = (from pet in context.Pets select pet);
             context.Pets.RemoveRange(pets);
-            // Adoption Requests
-            var adoptionRequests = (from adoptionRequest in context.adoptionRequests select adoptionRequest);
-            context.adoptionRequests.RemoveRange(adoptionRequests);
             // Organizations
             var organizations = (from organization in context.Organizations select organization);
             context.Organizations.RemoveRange(organizations);
             // Users
             var users = (from user in context.Users select user);
             context.Users.RemoveRange(users);
+            // Adoption Requests
+            var adoptionRequests = (from adoptionRequest in context.AdoptionRequests select adoptionRequest);
+            context.AdoptionRequests.RemoveRange(adoptionRequests);
 
             context.SaveChanges();
 
@@ -52,9 +52,14 @@ namespace HoPet.Migrations
             context.Pets.Add(new Pet() { Id = 4, AdoptionDate = new System.DateTime(2017, 07, 17), AnimalType = AnimalType.RAT, Name = "Pinky", Description = "black rat", IsAdopted = false, Birthdate = new System.DateTime(2017, 07, 17) });
             context.Pets.Add(new Pet() { Id = 5, AdoptionDate = new System.DateTime(2017, 02, 17), AnimalType = AnimalType.DOG, Name = "Kamila", Description = "white dog", IsAdopted = true, Birthdate = new System.DateTime(2017, 07, 17) });
 
+            // Users
+            context.Users.Add(new User() { Id = 1, Username = "yardenl", IsAdmin = false, Password = "123456", Email = "yardenl@gmail.com", ContactInfo = "099555281" });
+            context.Users.Add(new User() { Id = 2, Username = "chentur", IsAdmin = true, Password = "123456", Email = "chentur@gmail.com", ContactInfo = "0544688199" });
+            context.Users.Add(new User() { Id = 3, Username = "OscarGoodBoy", IsAdmin = false, Password = "123456", Email = "goodboy@gmail.com", ContactInfo = "0544788193" });
+
             // Adoption Requests
-            context.adoptionRequests.Add(new AdoptionRequest() { Id = 1, IsOpen = true, User = context.Users.Find(1), Pet = context.Pets.Find(1) });
-            context.adoptionRequests.Add(new AdoptionRequest() { Id = 2, IsOpen = true, User = context.Users.Find(2), Pet = context.Pets.Find(5) });
+            context.AdoptionRequests.Add(new AdoptionRequest() { Id = 1, IsOpen = true, User = context.Users.Find(1), Pet = context.Pets.Find(1) });
+            context.AdoptionRequests.Add(new AdoptionRequest() { Id = 2, IsOpen = true, User = context.Users.Find(2), Pet = context.Pets.Find(5) });
 
             // Organizations
             context.Organizations.Add(new Organization()
@@ -65,7 +70,7 @@ namespace HoPet.Migrations
                 Area = Area.NORTH,
                 PhoneNumber = "099500281",
                 Pets = new List<Pet> { context.Pets.Find(1), context.Pets.Find(2) },
-                AdoptionRequests = new List<AdoptionRequest> { context.adoptionRequests.Find(1) }
+                AdoptionRequests = new List<AdoptionRequest> { context.AdoptionRequests.Find(1) }
             });
             context.Organizations.Add(new Organization()
             {
@@ -75,14 +80,8 @@ namespace HoPet.Migrations
                 Area = Area.EAST,
                 PhoneNumber = "0544788199",
                 Pets = new List<Pet> { context.Pets.Find(3), context.Pets.Find(4), context.Pets.Find(5) },
-                AdoptionRequests = new List<AdoptionRequest> { context.adoptionRequests.Find(2) }
+                AdoptionRequests = new List<AdoptionRequest> { context.AdoptionRequests.Find(2) }
             });
-
-            // Users
-            context.Users.Add(new User() { Id = 1, Username = "yardenl", IsAdmin = false, Password = "123456", Email = "yardenl@gmail.com", ContactInfo = "099555281" });
-            context.Users.Add(new User() { Id = 2, Username = "chentur", IsAdmin = true, Password = "123456", Email = "chentur@gmail.com", ContactInfo = "0544688199" });
-            context.Users.Add(new User() { Id = 3, Username = "OscarGoodBoy", IsAdmin = false, Password = "123456", Email = "goodboy@gmail.com", ContactInfo = "0544788193" });
-
 
             context.SaveChanges();
         }
