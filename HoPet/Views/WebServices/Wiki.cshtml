@@ -11,7 +11,7 @@
     <input class="" type="text" id="inputTitle"/>
     <button class="btn btn-primary" id="get-wiki">Get wiki value</button>
     <button class="btn btn-default" id="clear">Clear</button>
-    <p><i id="bla"></i></p>
+    <p><i id="contentArea"></i></p>
 </div>
 
 <script>
@@ -23,15 +23,16 @@
                 let pages = jsonRespone.query.pages;
                 let foundPage = Object.keys(pages).find(key => pages[key].title == inputTitle);
                 if (!foundPage) {
-                    $("#bla").text("Content not found..");
+                    $("#contentArea").text("Content not found..");
                 } else {
-                    $("#bla").text(pages[foundPage].extract);
+                    $("#contentArea").text(pages[foundPage].extract);
                 }
             });
         });
 
         $("#clear").click(function () {
-            $("#bla").text("");
+            $("#contentArea").text("");
+            $("#inputTitle").val("");
         })
     });
 </script>
