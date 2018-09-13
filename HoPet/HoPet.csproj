@@ -259,7 +259,6 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\HoPetStyle.css" />
-    <Content Include="Content\images\hopet-icon.png" />
     <Content Include="Content\images\icon-image.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

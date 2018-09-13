@@ -6,11 +6,15 @@
 <style>
     .bar {
         fill: #4d79ff;
+        fill-opacity: 0.6;
+        transition: fill-opacity .75s ease-in-out;
+        -moz-transition: fill-opacity .75s ease-in-out;
+        -webkit-transition: fill-opacity .75s ease-in-out;
     }
 
-    .bar:hover {
-        fill: #3399ff;
-    }
+        .bar:hover {
+            fill-opacity: 1.0;
+        }
 
     .axis--x path {
         display: none;
@@ -21,7 +25,10 @@
     }
 
     .path {
-        fill-opacity: 0.7;
+        fill-opacity: 0.6;
+        transition: fill-opacity .75s ease-in-out;
+        -moz-transition: fill-opacity .75s ease-in-out;
+        -webkit-transition: fill-opacity .75s ease-in-out;
     }
 
     .path:hover {
