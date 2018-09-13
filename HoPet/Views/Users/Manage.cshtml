@@ -1,20 +1,28 @@
 ﻿
 @{
-    ViewBag.Title = "Manage";
+    ViewBag.Title = "Manager Page";
 }
 
-<h2>Manage Page</h2>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-sm">
+            <h2>Manager Page</h2>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Manage Twitter", "Index", "Home", new { }, new { @class = "btn btn-info" })
+            </p>
+        </div>
+    </div>
+</div>
 
 <div class="container">
     <div class="row">
-        <div class="col">
-            Tweeter
+        <div class="col margin-md-right">
+            @{Html.RenderAction("Wiki", "WebServices");}
         </div>
         <div class="col">
-            Wheather
-        </div>
-        <div class="col">
-            <div class="row">
+            <div class="row margin-md-left">
                 @{Html.RenderAction("Bubble", "Statistics");}
             </div>
             <div class="row">

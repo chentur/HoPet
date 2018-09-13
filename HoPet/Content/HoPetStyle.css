@@ -28,6 +28,14 @@
     margin-top: 4px;
 }
 
+.margin-md-left {
+    margin-left: 10px;
+}
+
+.margin-md-right {
+    margin-right: 10px;
+}
+
 .fill {
     height: 100%;
 }
