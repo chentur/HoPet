@@ -4,6 +4,29 @@
     padding-top: 10px;
 }
 
+@font-face {
+    font-family: hopetFont;
+    src: url("../fonts/FONTH.woff");
+}
+
+.site-title {
+    font-family: hopetFont;
+    font-size: 26px;
+}
+
+.page-title {
+    font-family: hopetFont;
+    text-shadow: 1px 1px 3px #87CEFA;
+}
+
+.jumbotron {
+    margin: unset;
+}
+
+.container {
+    margin: unset;
+}
+
 .card-field {
     font-weight: bold;
 }
@@ -18,4 +41,20 @@
 
 .margin-top-small {
     margin-top: 4px;
+}
+
+.margin-md-left {
+    margin-left: 10px;
+}
+
+.margin-md-right {
+    margin-right: 10px;
+}
+
+.margin-sm-right {
+    margin-right: 4px;
+}
+
+.fill {
+    height: 100%;
 }

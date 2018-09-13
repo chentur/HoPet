@@ -50,7 +50,11 @@ namespace HoPet.Migrations
             context.Pets.Add(new Pet() { Id = 2, AdoptionDate = new System.DateTime(2018, 7, 17), AnimalType = AnimalType.FISH, Name = "Gutte", Description = "black fish", IsAdopted = false, Birthdate = new System.DateTime(2017, 07, 17) });
             context.Pets.Add(new Pet() { Id = 3, AdoptionDate = new System.DateTime(2018, 9, 1), AnimalType = AnimalType.HAMSTER, Name = "Jasper", Description = "black hamster", IsAdopted = true, Birthdate = new System.DateTime(2017, 07, 17) });
             context.Pets.Add(new Pet() { Id = 4, AdoptionDate = new System.DateTime(2017, 07, 17), AnimalType = AnimalType.RAT, Name = "Pinky", Description = "black rat", IsAdopted = false, Birthdate = new System.DateTime(2017, 07, 17) });
-            context.Pets.Add(new Pet() { Id = 5, AdoptionDate = new System.DateTime(2017, 02, 17), AnimalType = AnimalType.DOG, Name = "Kamila", Description = "white dog", IsAdopted = true, Birthdate = new System.DateTime(2017, 07, 17) });
+            context.Pets.Add(new Pet() { Id = 5, AdoptionDate = new System.DateTime(2017, 02, 17), AnimalType = AnimalType.DOG, Name = "Kamila", Description = "white dog", IsAdopted = false, Birthdate = new System.DateTime(2017, 07, 17) });
+            context.Pets.Add(new Pet() { Id = 6, AdoptionDate = new System.DateTime(2017, 02, 17), AnimalType = AnimalType.DOG, Name = "Peggy", Description = "blue dog", IsAdopted = false, Birthdate = new System.DateTime(2017, 07, 17) });
+            context.Pets.Add(new Pet() { Id = 7, AdoptionDate = new System.DateTime(2018, 9, 1), AnimalType = AnimalType.HAMSTER, Name = "Ross", Description = "brown hamster", IsAdopted = false, Birthdate = new System.DateTime(2017, 07, 17) });
+            context.Pets.Add(new Pet() { Id = 8, AdoptionDate = new System.DateTime(2017, 02, 17), AnimalType = AnimalType.FISH, Name = "Bloop", Description = "nice fish", IsAdopted = false, Birthdate = new System.DateTime(2017, 07, 17) });
+            context.Pets.Add(new Pet() { Id = 9, AdoptionDate = new System.DateTime(2017, 02, 17), AnimalType = AnimalType.PARROT, Name = "Tooki", Description = "colorful parrot", IsAdopted = false, Birthdate = new System.DateTime(2017, 07, 17) });
 
             // Users
             context.Users.Add(new User() { Id = 1, Username = "yardenl", IsAdmin = false, Password = "123456", Email = "yardenl@gmail.com", ContactInfo = "099555281" });

@@ -18,18 +18,18 @@ namespace HoPet.Controllers
         // GET: Users
         public ActionResult Index()
         {
-            var currentUser = ((User)HttpContext.Session["user"]);
-            if (currentUser != null)
+            var sessionUser = ((User)HttpContext.Session["user"]);
+            if (sessionUser != null)
             {
                 var users = db.Users.Select(s => s);
                 // Only admin is allowed to see al users
-                if (!currentUser.IsAdmin)
+                if (!sessionUser.IsAdmin)
                 {
                     return RedirectToAction("Index", "Error", new { message = "Not autorized!" });
                 }
                 return View(users.ToList());
             }
-            return RedirectToAction("Index", "Error");
+            return RedirectToAction("Index", "Error", new { message = "You have to login first.." });
         }
 
         // GET: Users/Search
@@ -61,7 +61,7 @@ namespace HoPet.Controllers
                     return RedirectToAction("Index", "Error", new { message = "Not autorized!" });
                 }
             }
-            return RedirectToAction("Index", "Error");
+            return RedirectToAction("Index", "Error", new { message = "You have to login first.." });
         }
 
         // GET: Users/Details/5
@@ -91,8 +91,8 @@ namespace HoPet.Controllers
         // GET: Users/Register
         public ActionResult Register()
         {
-            var currentUser = ((User)HttpContext.Session["user"]);
-            if (currentUser == null || currentUser.IsAdmin)
+            var sessionUser = ((User)HttpContext.Session["user"]);
+            if (sessionUser == null || sessionUser.IsAdmin)
             {
                 return View();
             }
@@ -255,6 +255,22 @@ namespace HoPet.Controllers
                 System.Web.HttpContext.Current.Session["user"] = null;
                 return RedirectToAction("Login", "Users");
             }
+        }
+
+        // GET: Users/Manage
+        public ActionResult Manage()
+        {
+            User sessionUser = ((User)HttpContext.Session["user"]);
+            if (sessionUser != null)
+            {
+                if (!sessionUser.IsAdmin)
+                {
+                    return RedirectToAction("Index", "Error", new { message = "Not autorized!" });
+                }
+                return View();
+            }
+
+            return RedirectToAction("Index", "Error", new { message = "You have to login first.." });
         }
 
         protected override void Dispose(bool disposing)
