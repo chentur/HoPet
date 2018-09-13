@@ -2,10 +2,18 @@
 @{
     ViewBag.Title = "Index";
 }
-
-
-<h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+@Scripts.Render("~/Scripts/WarningDraw.js")
+<div class="row">
+    <div class="col-xl-auto">
+        <h2 class="text-danger">@ViewBag.ErrorMessage</h2>
+    </div>
+    <div class="col-sm-auto">
+        <canvas id="canvasId" width="80" height="70"></canvas>
+    </div>
+</div>
 <div>
     @Html.ActionLink("Go back to HoPet home page", "Index", "Home")
 </div>
-
+<script>
+    drawWarningSign()
+</script>

@@ -4,6 +4,16 @@
     padding-top: 10px;
 }
 
+@font-face {
+    font-family: hopetFont;
+    src: url("../fonts/FONTH.woff");
+}
+
+.site-title {
+    font-family: hopetFont;
+    font-size: 26px;
+}
+
 .jumbotron {
     margin: unset;
 }
@@ -34,6 +44,10 @@
 
 .margin-md-right {
     margin-right: 10px;
+}
+
+.margin-sm-right {
+    margin-right: 4px;
 }
 
 .fill {
