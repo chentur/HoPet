@@ -21,7 +21,7 @@
             $.get("@Url.Action("GetWikiValue", "WebServices")?title=" + inputTitle, function (response) {
                 let jsonRespone = JSON.parse(response);
                 let pages = jsonRespone.query.pages;
-                let foundPage = Object.keys(pages).find(key => pages[key].title == inputTitle);
+                let foundPage = Object.keys(pages).find(key => pages[key].title.toUpperCase() == inputTitle.toUpperCase());
                 if (!foundPage) {
                     $("#contentArea").text("Content not found..");
                 } else {
