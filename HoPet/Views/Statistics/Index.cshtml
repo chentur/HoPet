@@ -4,37 +4,50 @@
 @Scripts.Render("~/Scripts/PetsStatistics.js")
 
 <style>
-    .bubbleChart {
-        min-width: 100px;
-        max-width: 450px;
-        min-height: 100px;
-        max-height: 450px;
-        margin: 0 auto;
-    }
-
     .bar {
-        fill: steelblue;
+        fill: #4d79ff;
     }
 
-        .bar:hover {
-            fill: brown;
-        }
+    .bar:hover {
+        fill: #3399ff;
+    }
 
     .axis--x path {
         display: none;
     }
+
+    .pie-lable {
+        font-family: sans-serif Arial;
+    }
+
+    .path {
+        fill-opacity: 0.7;
+    }
+
+    .path:hover {
+       fill-opacity: 1.0;
+    }
 </style>
-</head>
 <body>
-    <div class="chart" />
-    <div class="pie" />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col chart">
+                <h2>Adoption Requests By Organization</h2>
+            </div>
+            <div class="col pie align-content-center">
+                <h2>Pets in HoPet By Organization</h2>
+            </div>
+        </div>
+        <div class="row">
+            <p class="btn btn-default">@Html.ActionLink("Go back to Manager Page ", "Manage", "Users")&raquo;</p>
+        </div>
+    </div>
 </body>
-</html>
 
 <script>
-    var petsByType = JSON.parse('@Html.Raw(ViewBag.petsByType)');
-    drawBasicPieChart(petsByType);
-
     var petsCountByOrganization = JSON.parse('@Html.Raw(ViewBag.petsCountByOrganization)');
-    drawBasicChart(petsCountByOrganization);
+    drawBasicPieChart(petsCountByOrganization);
+
+    var adCountByOrganization = JSON.parse('@Html.Raw(ViewBag.adCountByOrganization)');
+    drawBasicChart(adCountByOrganization);
 </script>

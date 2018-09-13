@@ -3,6 +3,24 @@
     ViewBag.Title = "Manage";
 }
 
-<h2>Manage</h2>
+<h2>Manage Page</h2>
 
-@{Html.RenderAction("Index", "Statistics");}
+<div class="container">
+    <div class="row">
+        <div class="col">
+            Tweeter
+        </div>
+        <div class="col">
+            Wheather
+        </div>
+        <div class="col">
+            <div class="row">
+                @{Html.RenderAction("Bubble", "Statistics");}
+            </div>
+            <div class="row">
+                <p class="btn btn-default">@Html.ActionLink("For nore statistics on HoPet ", "Index", "Statistics")&raquo;</p>
+            </div>
+        </div>
+    </div>
+</div>
+

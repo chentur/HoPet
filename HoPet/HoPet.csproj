@@ -301,6 +301,7 @@
     <Content Include="Views\Users\Search.cshtml" />
     <Content Include="Views\Users\Manage.cshtml" />
     <Content Include="Views\Statistics\Index.cshtml" />
+    <Content Include="Views\Statistics\Bubble.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

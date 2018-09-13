@@ -7,6 +7,8 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/HoPetStyle.css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
     @{var sessionVar = (HoPet.Models.User)HttpContext.Current.Session["user"];
@@ -29,8 +31,6 @@
         </div>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
