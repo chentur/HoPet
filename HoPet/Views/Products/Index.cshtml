@@ -1,0 +1,65 @@
+﻿@model IEnumerable<HoPet.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-sm">
+            <h2 class="page-title">Products List</h2>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success" })
+            </p>
+        </div>
+    </div>
+</div>
+<span class="fa fa-plus"></span>
+<ul class="list-inline">
+    @foreach (var item in Model)
+    {
+        <li class="list-inline-item full-card">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header card-field">
+                    <h4>
+                        @Html.DisplayFor(model => item.Name)
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <span>for @Html.DisplayFor(model => item.PetRelated)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Description) : </span>
+                        <span>@Html.DisplayFor(model => item.Description)</span>
+                    </p>
+                    <p class="card-text">
+                        @{
+                            if (item.Quantity == 0)
+                            {
+                                <span class="text-danger">Out Of Stock</span>
+                            }
+                            else
+                            {
+                                <span class="card-field">@Html.DisplayNameFor(model => model.Quantity) : </span>
+                                <span>@Html.DisplayFor(model => item.Quantity)</span>
+                            }
+                        }
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Price) : </span>
+                        <span>@Html.DisplayFor(model => item.Price) dollars</span>
+                    </p>
+                </div>
+                <div class="card-footer container">
+                    <div class="row justify-content-around">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary col-5" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary col-5" })
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
