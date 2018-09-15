@@ -1,0 +1,38 @@
+﻿
+<style>
+    p {
+        margin-top: 4px;
+        margin-bottom: 4px;
+    }
+</style>
+
+<div>
+    <h4>Learn about pets from Wikipedia</h4>
+    <input class="" type="text" id="inputTitle"/>
+    <button class="btn btn-primary" id="get-wiki">Get wiki value</button>
+    <button class="btn btn-default" id="clear">Clear</button>
+    <p><i id="contentArea"></i></p>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#get-wiki").click(function () {
+            var inputTitle = $("#inputTitle").val();
+            $.get("@Url.Action("GetWikiValue", "WebServices")?title=" + inputTitle, function (response) {
+                let jsonRespone = JSON.parse(response);
+                let pages = jsonRespone.query.pages;
+                let foundPage = Object.keys(pages).find(key => pages[key].title.toUpperCase() == inputTitle.toUpperCase());
+                if (!foundPage) {
+                    $("#contentArea").text("Content not found..");
+                } else {
+                    $("#contentArea").text(pages[foundPage].extract);
+                }
+            });
+        });
+
+        $("#clear").click(function () {
+            $("#contentArea").text("");
+            $("#inputTitle").val("");
+        })
+    });
+</script>

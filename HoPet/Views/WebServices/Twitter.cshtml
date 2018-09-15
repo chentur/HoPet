@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Twitter";
+}
+
+<style>
+    .blockquote {
+        border: solid 2px var(--blue);
+        box-shadow: #b7c8cc 4px 4px;
+        border-radius: 4px 4px;
+        padding: 4px 10px;
+    }
+
+    .contentArea {
+        overflow: scroll;
+        width: 500px;
+        height: 200px;
+    }
+
+    #inputPost {
+        width: 500px;
+        padding: 10px;
+    }
+</style>
+
+<h2 class="page-title">HoPet Twitter</h2>
+
+<div class="row">
+    <div class="col">
+        <h4>Tweets</h4>
+        <div id="contentArea"></div>
+    </div>
+    <div class="col">
+        <h4>Post New Tweet</h4>
+        <div class="row justify-content-start">
+            <input class="margin-md-right margin-md-left" type="text" id="inputPost" />
+            <button class="btn btn-primary" id="post-tweet">post</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <p class="btn btn-default">@Html.ActionLink("Go back to Manager Page ", "Manage", "Users")&raquo;</p>
+</div>
+
+<script>
+    $(document).ready(function () {
+        var getTweets = function () {
+            $.get("@Url.Action("GetTwitterPosts", "WebServices")", function (response) {
+                let jsonRespone = JSON.parse(response);
+                $("#contentArea").empty();
+                for (let key of Object.keys(jsonRespone)) {
+                    $("#contentArea").append('<blockquote class="blockquote margin-top-small">' +
+                        '<p class="mb-0"><i>' + jsonRespone[key].FullText + '</i></p>' +
+                        '<footer class="blockquote-footer">' + jsonRespone[key].CreatedAt + '</footer>' +
+                        '</blockquote> ');
+                }
+            });
+        }
+
+        $("#post-tweet").click(function () {
+            var inputPost = $("#inputPost").val();
+            $.get("@Url.Action("PostTweet", "WebServices")?content=" + inputPost, function (response) {
+                getTweets();
+                $("#inputPost").val("");
+            });
+        });
+
+        getTweets();
+    });
+</script>
+

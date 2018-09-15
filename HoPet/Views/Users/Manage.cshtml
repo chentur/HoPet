@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "Manager Page";
+}
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-sm">
+            <h2 class="page-title">Manager Page</h2>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Manage Twitter", "Twitter", "WebServices", new { }, new { @class = "btn btn-info" })
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col margin-md-right">
+            @{Html.RenderAction("Wiki", "WebServices");}
+        </div>
+        <div class="col">
+            <div class="row margin-md-left">
+                @{Html.RenderAction("Bubble", "Statistics");}
+            </div>
+            <div class="row">
+                <p class="btn btn-default">@Html.ActionLink("For nore statistics on HoPet ", "Index", "Statistics")&raquo;</p>
+            </div>
+        </div>
+    </div>
+</div>
+

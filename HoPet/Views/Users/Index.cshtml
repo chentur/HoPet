@@ -1,0 +1,66 @@
+﻿@model IEnumerable<HoPet.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-sm">
+            <h2 class="page-title">Users List</h2>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Search Users", "Search", new { }, new { @class = "btn btn-info" })
+            </p>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Register New User", "Register", new { }, new { @class = "btn btn-success" })
+            </p>
+        </div>
+    </div>
+</div>
+<ul class="list-inline">
+    @foreach (var item in Model)
+    {
+        <li class="list-inline-item">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header card-field">
+                    <h4>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Email) :</span>
+                        <span>@Html.DisplayFor(modelItem => item.Email)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.ContactInfo) :</span>
+                        <span>@Html.DisplayFor(modelItem => item.ContactInfo)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.IsAdmin) :</span>
+                        @{
+                            if (item.IsAdmin)
+                            {
+                                <span class="text-success">true</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">false</span>
+                            }
+                        }
+                    </p>
+                </div>
+                <div class="card-footer container">
+                    <div class="row justify-content-around">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary col-5" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary col-5" })
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
