@@ -7,7 +7,7 @@ namespace HoPet.Models
 {
     public enum AnimalType
     {
-        DOG, CAT, HAMSTER, PARROT, RAT, FISH
+        DOG, CAT, HAMSTER, PARROT, RAT, FISH, FROG, GUINEAPIG, RABBIT, SNAKE
     }
 
     public class Pet
