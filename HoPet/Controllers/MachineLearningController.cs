@@ -10,6 +10,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.IO;
 using System.Web.Hosting;
+using Microsoft.ML.Runtime;
+using System.Net;
 
 namespace HoPet.Controllers
 {
@@ -26,7 +28,12 @@ namespace HoPet.Controllers
             pipeline.Add(new TextLoader(path).CreateFrom<PetNameData>(useHeader: false, separator: ','));
             pipeline.Add(new Dictionarizer("Label"));
             pipeline.Add(new ColumnConcatenator("Features", "Year"));
-            pipeline.Add(new StochasticDualCoordinateAscentClassifier());
+            pipeline.Add(new StochasticDualCoordinateAscentClassifier
+            {
+                MaxIterations = 100,
+                NumThreads = 7,
+                LossFunction = new SmoothedHingeLossSDCAClassificationLossFunction()
+            });
             pipeline.Add(new PredictedLabelColumnOriginalValueConverter() { PredictedLabelColumn = "PredictedLabel" });
 
             this.model = pipeline.Train<PetNameData, PetNamePrediction>();
@@ -39,11 +46,18 @@ namespace HoPet.Controllers
         }
 
         // GET: MachineLearning/GetPetNamePrediction
-        public string GetPetNamePrediction(int age)
+        public Object GetPetNamePrediction(string year)
         {
-            var birthYear = 2017 - age;
-            var prediction = this.model.Predict(new PetNameData { Year = birthYear });
-            return prediction.PredictedName;
+            try
+            {
+                int intYear = Int32.Parse(year);
+                var prediction = this.model.Predict(new PetNameData { Year = intYear });
+                return prediction.PredictedName;
+            }
+            catch (FormatException e)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
         }
     }
 }
