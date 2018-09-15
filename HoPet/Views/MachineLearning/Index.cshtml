@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Pet Name Prediction";
+}
+
+<h2 class="page-title">Pet Name Prediction</h2>
+
+<div>
+    <h4>Get a prediction for your pet name according to future adoption year</h4>
+    Enter future year : <input type="number" name="year" id="yearInput" min="2019">
+    <button class="btn btn-primary" id="get-pred">Get prediction</button>
+    <button class="btn btn-default" id="clear">Clear</button>
+    <p id="contentArea"></p>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#get-pred").click(function () {
+            var year = $("#yearInput").val();
+            $("#contentArea").text("Calculating..");
+            $.get("@Url.Action("GetPetNamePrediction", "MachineLearning")?year=" + year, function (response) {
+                $("#contentArea").text("Pet name prediction : " + response);
+            });
+        });
+
+        $("#clear").click(function () {
+            $("#contentArea").text("");
+            $("#yearInput").val(null);
+        })
+    });
+</script>
