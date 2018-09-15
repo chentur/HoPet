@@ -24,7 +24,7 @@ namespace HoPet.Controllers
         public ActionResult Create()
         {
             var sessionUser = ((User)HttpContext.Session["user"]);
-            if (sessionUser.IsAdmin)
+            if (sessionUser != null && sessionUser.IsAdmin)
             {
                 return View();
             }
@@ -76,7 +76,7 @@ namespace HoPet.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User sessionUser = (User)System.Web.HttpContext.Current.Session["user"];
-            if (sessionUser.IsAdmin)
+            if (sessionUser != null && sessionUser.IsAdmin)
             {
                 Product product = db.Products.Find(id);
                 if (product == null)
@@ -115,7 +115,7 @@ namespace HoPet.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             User sessionUser = (User)System.Web.HttpContext.Current.Session["user"];
-            if (sessionUser.IsAdmin)
+            if (sessionUser != null && sessionUser.IsAdmin)
             {
                 Product product = db.Products.Find(id);
                 if (product == null)
