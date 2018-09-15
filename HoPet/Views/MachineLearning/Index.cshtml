@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<div>
+    <h4>Get a prediction for your pet name according to your age</h4>
+    Enter your age (1 to 20)<input type="number" name="age" id="ageInput" min="1" max="20">
+    <button class="btn btn-primary" id="get-pred">Get prediction</button>
+    <button class="btn btn-default" id="clear">Clear</button>
+    <p id="contentArea"></p>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#get-pred").click(function () {
+            var age = $("#ageInput").val();
+            $.get("@Url.Action("GetPetNamePrediction", "MachineLearning")?age=" + age, function (response) {
+                $("#contentArea").text(response);
+            });
+        });
+
+        $("#clear").click(function () {
+            $("#contentArea").text("");
+            $("#ageInput").val(null);
+        })
+    });
+</script>
