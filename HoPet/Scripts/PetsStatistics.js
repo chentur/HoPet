@@ -5,6 +5,10 @@
     "HAMSTER": "#75d778",
     "PARROT": "#ff3333",
     "FISH": "#ff9933",
+    "FROG": "#25c13a",
+    "GUINEAPIG": "#ff3399",
+    "RABBIT": "#999999",
+    "SNAKE": "#bb7777",
     "DEFAULT": "#4d79ff"
 };
 
