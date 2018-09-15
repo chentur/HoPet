@@ -14,10 +14,10 @@ namespace HoPet.Models
             Database.SetInitializer<ProjectDBContext>(null);
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Pet> Pets { get; set; }
-        public DbSet<Organization> Organizations { get; set; }
-        public DbSet<AdoptionRequest> AdoptionRequests { get; set; }
-        public DbSet<Product> Products { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Pet> Pets { get; set; }
+        public virtual DbSet<Organization> Organizations { get; set; }
+        public virtual DbSet<AdoptionRequest> AdoptionRequests { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
     }
 }

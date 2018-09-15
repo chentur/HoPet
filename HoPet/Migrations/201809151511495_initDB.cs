@@ -3,7 +3,7 @@ namespace HoPet.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitDB1 : DbMigration
+    public partial class initDB : DbMigration
     {
         public override void Up()
         {
@@ -47,10 +47,10 @@ namespace HoPet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Username = c.String(),
+                        Username = c.String(nullable: false),
                         Email = c.String(),
                         ContactInfo = c.String(),
-                        Password = c.String(),
+                        Password = c.String(nullable: false),
                         IsAdmin = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.Id);
@@ -72,7 +72,7 @@ namespace HoPet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Name = c.String(),
+                        Name = c.String(nullable: false),
                         Price = c.Double(nullable: false),
                         Quantity = c.Int(nullable: false),
                         PetRelated = c.Int(nullable: false),
