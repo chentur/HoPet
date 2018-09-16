@@ -7,13 +7,13 @@ namespace HoPet.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class initDB : IMigrationMetadata
+    public sealed partial class initDBPet : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(initDB));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initDBPet));
         
         string IMigrationMetadata.Id
         {
-            get { return "201809151852328_initDB"; }
+            get { return "201809161921500_initDBPet"; }
         }
         
         string IMigrationMetadata.Source

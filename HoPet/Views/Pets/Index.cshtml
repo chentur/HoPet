@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HoPet.Models.Pet>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-sm">
+            <h2 class="page-title">Pets List</h2>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Find Your Pet Name", "Index", "MachineLearning", new { }, new { @class = "btn btn-primary" })
+            </p>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Search Pets", "Search", new { }, new { @class = "btn btn-info" })
+            </p>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success" })
+            </p>
+        </div>
+    </div>
+</div>
+<span class="fa fa-plus"></span>
+<ul class="list-inline">
+    @foreach (var item in Model)
+    {
+        <li class="list-inline-item full-card">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header card-field">
+                    <h4>
+                        @Html.DisplayFor(model => item.Name)
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <span>@Html.DisplayFor(model => item.AnimalType)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Description) : </span>
+                        <span>@Html.DisplayFor(model => item.Description)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Age) : </span>
+                        <span>@Html.DisplayFor(model => item.Age)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Organization) : </span>
+                        <span>@Html.DisplayFor(model => item.Organization.Name)</span>
+                    </p>
+                    <p class="card-text">
+                        @{
+                            if (item.IsAdopted)
+                            {
+                                <span class="text-success">Adopted</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">Not Adopted</span>
+                            }
+                        }
+                    </p>
+                </div>
+                @{
+                    var sessionVar = (HoPet.Models.User)HttpContext.Current.Session["user"];
+                    if (sessionVar != null && sessionVar.IsAdmin)
+                    {
+                        <div class="card-footer container">
+                            <div class="row justify-content-around">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary col-5" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary col-5" })
+                            </div>
+                        </div>
+                    }
+
+                }
+            </div>
+        </li>
+    }
+</ul>
