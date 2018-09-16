@@ -28,6 +28,38 @@ namespace HoPet.Controllers
             }
         }
 
+        // GET: Pets/Search
+        public ActionResult Search(string name = null, string description = null, bool isAdopted = false)
+        {
+            var sessionUser = ((User)HttpContext.Session["user"]);
+            if (sessionUser != null)
+            {
+                if (sessionUser.IsAdmin)
+                {
+                    var returnDataQurey = db.Pets.Select(curr => curr);
+
+                    if (!string.IsNullOrEmpty(name))
+                    {
+                        returnDataQurey = returnDataQurey.Where(curr => curr.Name.Contains(name));
+                    }
+
+                    returnDataQurey = returnDataQurey.Where(curr => curr.IsAdopted == isAdopted);
+
+                    if (!string.IsNullOrEmpty(description))
+                    {
+                        returnDataQurey = returnDataQurey.Where(u => u.Description.Contains(description));
+                    }
+
+                    return View(returnDataQurey.ToList());
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Error", new { message = "Not autorized!" });
+                }
+            }
+            return RedirectToAction("Index", "Error", new { message = "You have to login first.." });
+        }
+
         // GET: Pets/Details/5
         public ActionResult Details(int? id)
         {
