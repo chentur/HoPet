@@ -73,6 +73,8 @@ namespace HoPet.Migrations
                 Description = "SOS Pets",
                 Area = Area.NORTH,
                 PhoneNumber = "099500281",
+                CoordX = 51.50632,
+                CoordY = -0.12714,
                 Pets = new List<Pet> { context.Pets.Find(1), context.Pets.Find(2) },
                 AdoptionRequests = new List<AdoptionRequest> { context.AdoptionRequests.Find(1) }
             });
@@ -82,6 +84,8 @@ namespace HoPet.Migrations
                 Name = "Hope for Paws",
                 Description = "USA",
                 Area = Area.EAST,
+                CoordX = 31.954758,
+                CoordY = 34.842255,
                 PhoneNumber = "0544788199",
                 Pets = new List<Pet> { context.Pets.Find(3), context.Pets.Find(4), context.Pets.Find(5) },
                 AdoptionRequests = new List<AdoptionRequest> { context.AdoptionRequests.Find(2) }

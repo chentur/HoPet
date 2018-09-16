@@ -42,6 +42,7 @@ namespace HoPet.Controllers
             if (sessionUser != null)
             {
                 ViewBag.IsUserAdmin = sessionUser.IsAdmin;
+                
                 return View(organization);
             }
             return RedirectToAction("Index", "Error", new { message = "You have to login first.." });
