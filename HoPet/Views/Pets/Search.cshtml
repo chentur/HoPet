@@ -1,0 +1,96 @@
+﻿@model IEnumerable<HoPet.Models.Pet>
+@{
+    ViewBag.Title = "Search";
+}
+<h2 class="page-title">Search Users</h2>
+<div class="search-form">
+    @using (Html.BeginForm("Search", "Pets", FormMethod.Get))
+    {
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-4 justify-content-between">
+                    <div>
+                        <span>Name: </span>
+                        @Html.TextBox("name", null, new { @class = "form-control" })
+                    </div>
+                    <div>
+                        <span>Description: </span>
+                        @Html.TextBox("description", null, new { @class = "form-control" })
+                    </div>
+                    <div class="margin-top-small">
+                        @Html.CheckBox("isAdopted", false, new { @class = "", @type = "checkbox" })
+                        <span>Adopted</span>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<ul class="list-inline">
+    @foreach (var item in Model)
+    {
+        <li class="list-inline-item full-card">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-header card-field">
+                    <h4>
+                        @Html.DisplayFor(model => item.Name)
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row justify-content-between align-items-center margin-bottom-mediun">
+                        <div class="col">
+                            <p class="card-text">
+                                <span class="card-text">@Html.DisplayFor(model => item.AnimalType)</span>
+                            </p>
+                        </div>
+                        @{
+                            var imagePath = "~/Content/pets/" + item.AnimalType + ".jpg";
+                            <div class="col">
+                                <img class="pet-image" src="@Url.Content(imagePath)" />
+                            </div>
+                        }
+                    </div>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Description) : </span>
+                        <span>@Html.DisplayFor(model => item.Description)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Age) : </span>
+                        <span>@Html.DisplayFor(model => item.Age)</span>
+                    </p>
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Organization) : </span>
+                        <span>@Html.DisplayFor(model => item.Organization.Name)</span>
+                    </p>
+                    <p class="card-text">
+                        @{
+                            if (item.IsAdopted)
+                            {
+                                <span class="text-success">Adopted</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">Not Adopted</span>
+                            }
+                        }
+                    </p>
+                </div>
+                <div class="card-footer container">
+                    <div class="row justify-content-around">
+                        @{var sessionVar = (HoPet.Models.User)HttpContext.Current.Session["user"];
+                            if (sessionVar != null && sessionVar.IsAdmin)
+                            {
+                                @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary col-sm-auto" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-primary col-sm-auto" })
+                            }
+                        }
+                        @Html.ActionLink("Ask To Adopt", "Create", "AdoptionRequests", new { id = item.Id }, new { @class = "btn btn-primary col-5" })
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
