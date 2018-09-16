@@ -21,7 +21,7 @@ namespace HoPet.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Please enter pet age")]
-        [Range(0.0, Double.MaxValue)]
+        [Range(0.0, 200)]
         public double Age { get; set; }
 
         [Display(Name = "Adopted")]
