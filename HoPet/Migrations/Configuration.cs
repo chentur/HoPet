@@ -52,7 +52,9 @@ namespace HoPet.Migrations
                 Name = "SOS",
                 Description = "SOS Pets",
                 Area = Area.NORTH,
-                PhoneNumber = "099500281"
+                PhoneNumber = "099500281",
+                CoordX = 51.50632,
+                CoordY = -0.12714
             });
             context.Organizations.Add(new Organization()
             {
@@ -60,7 +62,9 @@ namespace HoPet.Migrations
                 Name = "Hope for Paws",
                 Description = "USA",
                 Area = Area.EAST,
-                PhoneNumber = "0544788199"
+                PhoneNumber = "0544788199",
+                CoordX = 31.954758,
+                CoordY = 34.842255
             });
             context.Organizations.Add(new Organization()
             {
@@ -68,7 +72,9 @@ namespace HoPet.Migrations
                 Name = "Sweet Homes",
                 Description = "We love pets!",
                 Area = Area.SOUTH,
-                PhoneNumber = "0544456899"
+                PhoneNumber = "0544456899",
+                CoordX = 31.954758,
+                CoordY = 34.842255
             });
 
             context.SaveChanges();
