@@ -3,7 +3,7 @@ namespace HoPet.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initDBWithGeo : DbMigration
+    public partial class InitDBHoPet : DbMigration
     {
         public override void Up()
         {
@@ -13,17 +13,17 @@ namespace HoPet.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         IsOpen = c.Boolean(nullable: false),
-                        Organization_Id = c.Int(),
-                        Pet_Id = c.Int(),
                         User_Id = c.Int(),
+                        Pet_Id = c.Int(),
+                        Organization_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Organizations", t => t.Organization_Id)
                 .ForeignKey("dbo.Pets", t => t.Pet_Id)
                 .ForeignKey("dbo.Users", t => t.User_Id)
-                .Index(t => t.Organization_Id)
+                .Index(t => t.User_Id)
                 .Index(t => t.Pet_Id)
-                .Index(t => t.User_Id);
+                .Index(t => t.Organization_Id);
             
             CreateTable(
                 "dbo.Pets",
@@ -36,11 +36,10 @@ namespace HoPet.Migrations
                         AnimalType = c.Int(nullable: false),
                         Description = c.String(),
                         Organization_Id = c.Int(),
-                        Organization_Id1 = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Organizations", t => t.Organization_Id1)
-                .Index(t => t.Organization_Id1);
+                .ForeignKey("dbo.Organizations", t => t.Organization_Id)
+                .Index(t => t.Organization_Id);
             
             CreateTable(
                 "dbo.Organizations",
@@ -61,13 +60,14 @@ namespace HoPet.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Username = c.String(nullable: false),
+                        Username = c.String(nullable: false, maxLength: 50, unicode: false),
                         Email = c.String(),
                         ContactInfo = c.String(),
                         Password = c.String(nullable: false),
                         IsAdmin = c.Boolean(nullable: false),
                     })
-                .PrimaryKey(t => t.Id);
+                .PrimaryKey(t => t.Id)
+                .Index(t => t.Username, unique: true);
             
             CreateTable(
                 "dbo.Products",
@@ -88,12 +88,13 @@ namespace HoPet.Migrations
         {
             DropForeignKey("dbo.AdoptionRequests", "User_Id", "dbo.Users");
             DropForeignKey("dbo.AdoptionRequests", "Pet_Id", "dbo.Pets");
-            DropForeignKey("dbo.Pets", "Organization_Id1", "dbo.Organizations");
+            DropForeignKey("dbo.Pets", "Organization_Id", "dbo.Organizations");
             DropForeignKey("dbo.AdoptionRequests", "Organization_Id", "dbo.Organizations");
-            DropIndex("dbo.Pets", new[] { "Organization_Id1" });
-            DropIndex("dbo.AdoptionRequests", new[] { "User_Id" });
-            DropIndex("dbo.AdoptionRequests", new[] { "Pet_Id" });
+            DropIndex("dbo.Users", new[] { "Username" });
+            DropIndex("dbo.Pets", new[] { "Organization_Id" });
             DropIndex("dbo.AdoptionRequests", new[] { "Organization_Id" });
+            DropIndex("dbo.AdoptionRequests", new[] { "Pet_Id" });
+            DropIndex("dbo.AdoptionRequests", new[] { "User_Id" });
             DropTable("dbo.Products");
             DropTable("dbo.Users");
             DropTable("dbo.Organizations");

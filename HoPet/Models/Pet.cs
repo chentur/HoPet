@@ -34,7 +34,12 @@ namespace HoPet.Models
 
         public string Description { get; set; }
 
+        [ForeignKey("Organization")]
         public int? Organization_Id { get; set; }
         public virtual Organization Organization { get; set; }
+
+        // Collections
+
+        public ICollection<AdoptionRequest> AdoptionRequests { get; set; }
     }
 }

@@ -360,6 +360,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdoptionRequestsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MachineLearningController.cs" />
@@ -372,9 +373,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201809162106080_initDBWithGeo.cs" />
-    <Compile Include="Migrations\201809162106080_initDBWithGeo.Designer.cs">
-      <DependentUpon>201809162106080_initDBWithGeo.cs</DependentUpon>
+    <Compile Include="Migrations\201809181144248_InitDBHoPet.cs" />
+    <Compile Include="Migrations\201809181144248_InitDBHoPet.Designer.cs">
+      <DependentUpon>201809181144248_InitDBHoPet.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AdoptionRequest.cs" />
@@ -461,6 +462,21 @@
     <Content Include="Views\Products\Delete.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
     <Content Include="Views\Products\Index.cshtml" />
+    <Content Include="Views\AdoptionRequests\Create.cshtml" />
+    <Content Include="Views\AdoptionRequests\Delete.cshtml" />
+    <Content Include="Views\AdoptionRequests\Details.cshtml" />
+    <Content Include="Views\AdoptionRequests\Edit.cshtml" />
+    <Content Include="Views\AdoptionRequests\Index.cshtml" />
+    <Content Include="Views\Pets\Create.cshtml" />
+    <Content Include="Views\Pets\Delete.cshtml" />
+    <Content Include="Views\Pets\Edit.cshtml" />
+    <Content Include="Views\Pets\Index.cshtml" />
+    <Content Include="Views\Pets\Search.cshtml" />
+    <Content Include="Views\Organizations\Create.cshtml" />
+    <Content Include="Views\Organizations\Delete.cshtml" />
+    <Content Include="Views\Organizations\Details.cshtml" />
+    <Content Include="Views\Organizations\Edit.cshtml" />
+    <Content Include="Views\Organizations\Index.cshtml" />
     <Content Include="Views\Pets\Create.cshtml" />
     <Content Include="Views\Pets\Delete.cshtml" />
     <Content Include="Views\Pets\Edit.cshtml" />
@@ -489,8 +505,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201809162106080_initDBWithGeo.resx">
-      <DependentUpon>201809162106080_initDBWithGeo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201809181144248_InitDBHoPet.resx">
+      <DependentUpon>201809181144248_InitDBHoPet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
