@@ -22,7 +22,7 @@
                 let jsonRespone = JSON.parse(response);
                 let pages = jsonRespone.query.pages;
                 let foundPage = Object.keys(pages).find(key => pages[key].title.toUpperCase() == inputTitle.toUpperCase());
-                if (!foundPage) {
+                if (!foundPage || foundPage == -1) {
                     $("#contentArea").text("Content not found..");
                 } else {
                     $("#contentArea").text(pages[foundPage].extract);

@@ -1,0 +1,85 @@
+﻿@model IEnumerable<HoPet.Models.AdoptionRequest>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-sm">
+            <h2 class="page-title">Adoption Requests List</h2>
+        </div>
+        <div class="col-sm col-sm-auto">
+            <p>
+                @Html.ActionLink("Create New", "Create", new { }, new { @class = "btn btn-success" })
+            </p>
+        </div>
+    </div>
+</div>
+
+<span class="fa fa-plus"></span>
+<ul class="list-inline">
+    @foreach (var item in Model)
+    {
+        <li class="list-inline-item full-card">
+            <div class="card border-primary mb-3" style="max-width: 20rem;">
+                <div class="card-body">
+
+                    <div class="row justify-content-between align-items-center margin-bottom-mediun">
+                        @{
+                            var imagePath = "~/Content/pets/" + item.Pet.AnimalType + ".jpg";
+                            <div class="col">
+                                <img class="pet-image" src="@Url.Content(imagePath)" />
+                            </div>
+                        }
+                    </div>
+                    
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.Pet)'s @Html.DisplayNameFor(model => model.Pet.Name): </span>
+                        <span>@Html.DisplayFor(model => item.Pet.Name)</span>
+                    </p>
+
+                    <p class="card-text">
+                        <span class="card-field">@Html.DisplayNameFor(model => model.User.Username) : </span>
+                        <span>@Html.DisplayFor(model => item.User.Username)</span>
+                    </p>
+
+                    <p class="card-text">
+                        @{
+                            if (item.IsOpen)
+                            {
+                                <span class="text-success">Opened</span>
+                            }
+                            else
+                            {
+                                <span class="text-danger">Closed</span>
+                            }
+                        }
+                    </p>
+                </div>
+
+                <div class="card-footer container">
+                    <div class="row justify-content-around">
+                        @if ((ViewBag.IsUserAdmin || ViewBag.UserId == item.User.Id) && item.IsOpen)
+                        {
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-primary col-sm-auto" })
+                        }
+
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn btn-primary col-sm-auto" })
+
+                        @if (ViewBag.IsUserAdmin && item.IsOpen)
+                        {
+                            @Html.ActionLink("Aprove", "Aprove", "AdoptionRequests", new { id = item.Id }, new { @class = "btn btn-success col-sm-auto" })
+                        }
+
+                        @if (ViewBag.IsUserAdmin || ViewBag.UserId == item.User.Id)
+                        {
+                            @Html.ActionLink("X", "Delete", new { id = item.Id }, new { @class = "btn btn-danger col-sm-auto" })
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </li>
+    }
+</ul>

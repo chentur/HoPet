@@ -14,16 +14,22 @@ namespace HoPet.Models
     public class Organization
     {
         public int Id { get; set; }
+
         [Required(ErrorMessage = "Please enter organization name")]
         public string Name { get; set; }
+
         public string Description { get; set; }
+
         [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "Please enter organization phone number")]
         public string PhoneNumber { get; set; }
+
         public Area Area { get; set; }
+
         [Display(Name = "Latitude")]
         [Required(ErrorMessage = "Please enter latitude")]
         public double CoordX { get; set; }
+
         [Display(Name = "Longitude")]
         [Required(ErrorMessage = "Please enter longitude")]
         public double CoordY { get; set; }
